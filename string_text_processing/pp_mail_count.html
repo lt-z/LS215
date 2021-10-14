@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="//dbdwvr6p7sskw.cloudfront.net/210/files/email_data_v2.js"></script>
+    <script>
+      function mailCount(emailData) {
+        let datesArray = emailData.match(/\d{2}-\d{2}-\d{4}/g);
+        let realDates = datesArray.map(date => new Date(date)).sort((a, b) => a - b);
+        
+        return `Count of Email: ${datesArray.length}
+Date Range: ${stringDate(realDates[0])} - ${stringDate(realDates[realDates.length - 1])}`;
+      }
+
+      function stringDate(date) {
+        const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+      }
+
+      console.log(mailCount(emailData));
+
+      /* console output
+
+      Count of Email: 5
+      Date Range: Sat Jun 25 2016 - Thu Aug 11 2016
+      */
+    </script>
+  </body>
+</html>
+
